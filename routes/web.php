@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserProfileController;
+use App\Models\UserProfile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/UserProfile',function(){
+    return 'bitch you better not';
+})->name('UserProfile.index');
