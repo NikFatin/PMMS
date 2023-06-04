@@ -14,6 +14,20 @@ return new class extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('Name');
+            $table->string('Admin_ID');
+            $table->string('Matric_ID')->Cpnstrained()->cascadeOnDelete();
+            $table->string('Name');
+            $table->string('Staff_ID');
+            $table->string('Gender');
+            $table->string('Email');
+            $table->string('Phone_Number');
+            $table->string('Staff_ID');
+            $table->date('DateEnter');
+            $table->integer('Year');
+            $table->string('program');
+            $table->string('Role');
+            $table->string('status');
         });
     }
 

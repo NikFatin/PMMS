@@ -19,6 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/UserProfile',function(){
-    return 'bitch you better not';
-})->name('UserProfile.index');
+Route::get('/UserProfile',[UserProfileController::class])->name('UserProfile.index');
