@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('Name');
             $table->string('Admin_ID');
-            $table->string('Matric_ID')->Cpnstrained()->cascadeOnDelete();
+            $table->string('Matric_ID')->Constrained()->cascadeOnDelete();
             $table->string('Name');
             $table->string('Staff_ID');
             $table->string('Gender');
