@@ -16,8 +16,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('todos.index')" :active="request()->routeIs('todos.index')">
-                        {{ __('ToDo') }}
+                    <x-nav-link :href="route('payment.index')" :active="request()->routeIs('payment.index')">
+                        {{ __('Payment') }}
                     </x-nav-link>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use Auth;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -12,7 +13,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return view('todos/index');
+        $todos = Todo::all();
+        return view('todos/index', ['todos' => $todos]);
     }
 
     /**
@@ -29,8 +31,12 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $todo = new Todo();
-        $todo->user_Id = Auth::user();
-        $todo->task = $request->task;
+        $todo->user_id = Auth::user()->id;
+        $todo->transactionid = $request->transactionid;
+        $todo->date = $request->date;
+        $todo->method = $request->method;
+        $todo->status = $request->status;
+        $todo->total = $request->total;
         $todo->save();
         return redirect(route('todos.index'));
     }
@@ -48,7 +54,7 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+        return view('todos/edit', ["todo" => $todo]);
     }
 
     /**
@@ -56,7 +62,9 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $todo->task = $request->task;
+        $todo->update();
+        return redirect(route('todos.index'));
     }
 
     /**
@@ -64,6 +72,7 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+        return redirect(route('todos.index'));
     }
 }
