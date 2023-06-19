@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\paymentController;
+use App\Http\Controllers\InventoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,13 @@ Route::middleware('auth')->group(function () {
 
 }); 
 require __DIR__ . '/auth.php';
+
+Route::get('/inventory', [InventoryController::class,'index'])->name('inventory.index');
+Route::get('/inventory/addItem', [InventoryController::class,'create'])->name('inventory.addItem');
+Route::post('/inventory', [InventoryController::class, 'add'])->name('inventory.viewInventoryList');
+Route::put('inventory/{itemId}/', [InventoryController::class, 'approve'])->name('inventory.approve');
+Route::delete('inventory/{itemiId}', [InventoryController::class, 'delete'])->name('inventory.delete');
+Route::get('/inventory', [InventoryController::class, 'show'])->name('inventory.show');
+Route::get('/inventory/{itemId}/edit', [InventoryController::class, 'edit'])->name('inventory.edit');
+Route::put('/inventory/{itemId}', [InventoryController::class, 'update'])->name('inventory.update');
+Route::get('/inventory/pending', [InventoryController::class, 'pendingItems'])->name('inventory.pending');
