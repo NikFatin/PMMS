@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\InventoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RosterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Manage Roster
+
+Route::get('/roster', [RosterController::class, 'index'])->name('roster.index');
+Route::get('/roster/create', [RosterController::class, 'create'])->name('roster.create');
+Route::post('/roster', [RosterController::class, 'store'])->name('roster.store');
+Route::get('/roster/{roster}/edit', [RosterController::class, 'edit'])->name('roster.edit');
+Route::put('/roster/{roster}/update', [RosterController::class, 'update'])->name('roster.update');
+Route::delete('/roster/{roster}/destroy', [RosterController::class, 'destroy'])->name('roster.destroy');
 
 Route::get('/', function () {
     return view('auth.login');
@@ -39,12 +49,4 @@ Route::middleware('auth')->group(function () {
 }); 
 require __DIR__ . '/auth.php';
 
-Route::get('/inventory', [InventoryController::class,'index'])->name('inventory.index');
-Route::get('/inventory/addItem', [InventoryController::class,'create'])->name('inventory.addItem');
-Route::post('/inventory', [InventoryController::class, 'add'])->name('inventory.viewInventoryList');
-Route::put('inventory/{itemId}/', [InventoryController::class, 'approve'])->name('inventory.approve');
-Route::delete('inventory/{itemiId}', [InventoryController::class, 'delete'])->name('inventory.delete');
-Route::get('/inventory', [InventoryController::class, 'show'])->name('inventory.show');
-Route::get('/inventory/{itemId}/edit', [InventoryController::class, 'edit'])->name('inventory.edit');
-Route::put('/inventory/{itemId}', [InventoryController::class, 'update'])->name('inventory.update');
-Route::get('/inventory/pending', [InventoryController::class, 'pendingItems'])->name('inventory.pending');
+require __DIR__.'/auth.php';
