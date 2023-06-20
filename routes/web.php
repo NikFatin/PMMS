@@ -58,7 +58,6 @@ Route::get('/inventory/addItem', [InventoryController::class,'create'])->name('i
 Route::post('/inventory', [InventoryController::class, 'add'])->name('inventory.add');
 Route::post('admin/approval-request/{itemId}', [InventoryController::class, 'approvalrequest'])->name('admin.approveRequest');
 Route::delete('inventory/{itemId}', [InventoryController::class, 'delete'])->name('inventory.delete');
-Route::get('/inventory', [InventoryController::class, 'show'])->name('inventory.show');
 Route::get('/inventory/{itemId}/edit', [InventoryController::class, 'edit'])->name('inventory.edit');
 Route::put('/inventory/{itemId}', [InventoryController::class, 'update'])->name('inventory.update');
 Route::get('/inventory/pending', [InventoryController::class, 'pendingItems'])->name('inventory.pending');

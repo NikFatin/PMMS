@@ -12,9 +12,11 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        $approvedItems=Inventory::where('appstatus', '=','approved')->get();
+        $approvedItems = Inventory::where('appstatus', 'approved')->get();
+
         return response()->json($approvedItems);
     }
+
 
     /**
      * Form for creating a new resource.
