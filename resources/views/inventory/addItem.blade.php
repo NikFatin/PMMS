@@ -10,7 +10,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Add item</h1>
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="my-3">Add item</h2>
+            <a href="inventory.index" class="btn btn-danger">Cancel</a>
+        </div>
         <div>
             @if ($errors->any())
             <ul>
@@ -20,7 +23,8 @@
             </ul>
             @endif
         </div>
-        <form method="post" action="{{route('inventory.viewInventoryList')}}">
+        //item form
+        <form method="post" action="{{route('inventory.create')}}">
             @csrf
             @method('post')
             <div class="mb-3">

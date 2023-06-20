@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Inventory;
@@ -9,16 +8,16 @@ use Illuminate\Http\Request;
 class InventoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the item.
      */
     public function index()
     {
-        $approvedItems=Inventory::where('status','approved')->get();
+        $approvedItems=Inventory::where('appstatus', '=','approved')->get();
         return response()->json($approvedItems);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Form for creating a new resource.
      */
     public function create()
     {
@@ -26,7 +25,7 @@ class InventoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created item in inventory.
      */
     public function add(Request $request)
     {
@@ -55,6 +54,7 @@ class InventoryController extends Controller
 
     public function approve(Request $request, $itemId)
     {
+        //admin approve request
         $inventoryItem=Inventory::findOrFail($itemId);
         $inventoryItem->status = 'approved';
         $inventoryItem->save();
@@ -75,7 +75,7 @@ class InventoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing
      */
     public function edit(Request $request, $itemId)
     {
@@ -85,7 +85,7 @@ class InventoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified item
      */
     public function update(Request $request, $itemId)
     {
@@ -109,7 +109,7 @@ class InventoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified item
      */
     public function delete(Request $request, $itemId)
     {
@@ -123,7 +123,7 @@ class InventoryController extends Controller
 
     public function pendingItems()
     {
-        $pendingItems=Inventory::where('status', 'pending')->get();
+        $pendingItems=Inventory::where('appstatus', 'pending')->get();
 
         return response()->json($pendingItems);
     }
