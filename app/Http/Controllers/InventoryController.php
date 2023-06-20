@@ -109,7 +109,7 @@ class InventoryController extends Controller
     }
 
     /**
-     * Remove the specified item
+     * Remove the specified item.
      */
     public function delete(Request $request, $itemId)
     {
@@ -127,4 +127,24 @@ class InventoryController extends Controller
 
         return response()->json($pendingItems);
     }
+
+    public function approvalRequest(Request $request, $itemId)
+{
+    // Admin handles the approval request
+    $inventoryItem = Inventory::findOrFail($itemId);
+    $action = $request->input('action');
+
+    if ($action === 'approve') {
+        $inventoryItem->appstatus = 'approved';
+        // Apply the corresponding logic for adding or removing the item from the inventory
+    } elseif ($action === 'reject') {
+        $inventoryItem->appstatus = 'rejected';
+        // Apply the corresponding logic for handling the rejection
+    }
+
+    $inventoryItem->save();
+
+    return response()->json(['message' => 'Approval request processed successfully']);
+}
+
 }
